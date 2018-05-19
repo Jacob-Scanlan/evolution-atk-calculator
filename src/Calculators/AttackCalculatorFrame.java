@@ -3,7 +3,7 @@ package Calculators;
 import javax.swing.JOptionPane;
 public class AttackCalculatorFrame extends javax.swing.JFrame {
     private String[] attackingTraits, defendingTraits;
-    private boolean warningCall = false, ignoreTrait = false, intelligence = false;
+    private boolean warningCall = false, ignoreTrait = false, intelligence = false, greaterBodySize = false;
     private int atkPop = 1, defPop = 1, atkSize = 1, defSize = 1, atkFood = 0, defFood = 0, cards = 0;
     
     public AttackCalculatorFrame() {
@@ -52,6 +52,7 @@ public class AttackCalculatorFrame extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jComboBox15 = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
+        jCheckBox2 = new javax.swing.JCheckBox();
 
         jTextField1.setText("jTextField1");
 
@@ -218,6 +219,13 @@ public class AttackCalculatorFrame extends javax.swing.JFrame {
 
         jLabel19.setText("Carnivore");
 
+        jCheckBox2.setText("Creature to Right has Greater Body Size");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -288,7 +296,8 @@ public class AttackCalculatorFrame extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel17)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                                    .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jCheckBox2))
                         .addGap(31, 51, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -369,7 +378,9 @@ public class AttackCalculatorFrame extends javax.swing.JFrame {
                             .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addComponent(jCheckBox1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(161, 161, 161))
         );
@@ -445,6 +456,10 @@ public class AttackCalculatorFrame extends javax.swing.JFrame {
         cards = Integer.parseInt(jComboBox15.getSelectedItem().toString().substring(0,1));
     }//GEN-LAST:event_jComboBox15ActionPerformed
 
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        greaterBodySize = jCheckBox2.isSelected();
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -493,7 +508,7 @@ public class AttackCalculatorFrame extends javax.swing.JFrame {
             else if(!linearSearch(attackingTraits, "Ambush"))
                 return false;
         }
-        if(linearSearch(defendingTraits, "Symbiosis")){
+        if(linearSearch(defendingTraits, "Symbiosis") && greaterBodySize){
             if(ignoreTrait)
                 ignoreTrait = false;
             else if(intelligence && cards >0)
@@ -559,6 +574,7 @@ public class AttackCalculatorFrame extends javax.swing.JFrame {
     
     private void reset(){
         jCheckBox1.setSelected(jCheckBox1.isSelected());
+        jCheckBox2.setSelected(jCheckBox2.isSelected());
         jComboBox1.setSelectedIndex(jComboBox1.getSelectedIndex());
         jComboBox2.setSelectedIndex(jComboBox2.getSelectedIndex());
         jComboBox4.setSelectedIndex(jComboBox4.getSelectedIndex());
@@ -580,6 +596,7 @@ public class AttackCalculatorFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
